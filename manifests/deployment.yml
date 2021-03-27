@@ -17,7 +17,7 @@ spec:
           image: IMAGE-DEPLOYMENT:TAG-DEPLOYMENT
           env:
             - name: WorkerConfigurations__Hosts
-              value: https://github.com|https://stackoverflow.com|https://siteinvalido.com.br
+              value: https://github.com|https://stackoverflow.com|https://siteinvalido.com.br|https://www.meetup.com/dotnet-Sao-Paulo/
             - name: WorkerConfigurations__DBMonitoramento
               value: DBMonitoracao
             - name: WorkerConfigurations__CollectionMonitoramento
