@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: monitoramentosites
-          image: IMAGE-DEPLOYMENT:TAG-DEPLOYMENT
+          image: CR-DEPLOYMENT/IMAGE-DEPLOYMENT:TAG-DEPLOYMENT
           env:
             - name: WorkerConfigurations__Hosts
               value: https://github.com|https://stackoverflow.com|https://siteinvalido.com.br|https://www.meetup.com/dotnet-Sao-Paulo/
