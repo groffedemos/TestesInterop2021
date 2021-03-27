@@ -7,7 +7,8 @@ on:
     branches: [ main ]
 
 env:
-  NOME_IMAGEM: monitoramentosites
+  NOME_APLICACAO: monitoramentosites
+  NOME_IMAGEM: monitorsites
   PATH_PROJETO: ./WorkerMonitoramentoSites
   AZURE_RESOURCE_GROUP_K8S: TesteKubernetes
   AZURE_CLUSTER_K8S: AKSCluster
@@ -20,12 +21,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2.3.4
-   
-    - name: Teste
-      env:
-        mensagem: "Workflow = ${{ github.workflow }} :: Execucao = ${{ github.run_number }} :: ${{ github.event.head_commit.message }}"
-      run: echo ${{ env.mensagem }}
-    
+       
     - name: Login no Azure Container Registry
       uses: docker/login-action@v1.8.0
       with:
@@ -66,6 +62,7 @@ jobs:
 
     - name: Configurar manifesto de Deployment
       run: |
+        sed -i 's/APPLICATION-NAME/${{ env.NOME_APLICACAO }}/' ./manifests/deployment.yml
         sed -i 's/CR-DEPLOYMENT/${{ secrets.AZURECR_REGISTRY }}/' ./manifests/deployment.yml
         sed -i 's/IMAGE-DEPLOYMENT/${{ env.NOME_IMAGEM }}/' ./manifests/deployment.yml
         sed -i 's/TAG-DEPLOYMENT/${{ github.run_number }}/' ./manifests/deployment.yml
@@ -80,3 +77,8 @@ jobs:
           '${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:${{ github.run_number }}'
         imagepullsecrets: |
           webapp-k8s-secret
+
+    - name: Registrar histórico da execução no Kubernetes
+      env:
+        HISTORICO_DEPLOYMENT: "Workflow = ${{ github.workflow }} :: Execucao = ${{ github.run_number }} :: ${{ github.event.head_commit.message }}"
+      run: kubectl annotate deployment ${{ env.NOME_APLICACAO }} kubernetes.io/change-cause="${{ env.HISTORICO_DEPLOYMENT }}" -n $$ ${{ env.NAMESPACE_K8S }}
