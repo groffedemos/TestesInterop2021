@@ -23,7 +23,7 @@ spec:
             - name: WorkerConfigurations__CollectionMonitoramento
               value: MonitorSites
             - name: WorkerConfigurations__Intervalo
-              value: "30000"
+              value: "60000"
             - name: WorkerConfigurations__ConnectionDBMonitoramento
               valueFrom:
                 secretKeyRef:
