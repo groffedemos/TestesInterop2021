@@ -14,7 +14,7 @@ namespace WorkerMonitoramentoSites
 {
     public class Worker : BackgroundService
     {
-        private const string VERSAO = "Worker Monitoramento Sites v1.0";
+        private const string VERSAO = "Worker Monitoramento Sites v1.1";
         private readonly ILogger<Worker> _logger;
         private readonly ParametrosExecucao _parametrosExecucao;
         private readonly MonitoramentoRepository _repository;
