@@ -64,7 +64,7 @@ jobs:
     - name: Configurar manifesto de Deployment
       run: |
         sed -i 's/CR-DEPLOYMENT/${{ secrets.AZURECR_REGISTRY }}/' ./manifests/deployment.yml
-        sed -i 's/IMAGE-DEPLOYMENT/${{ env.IMAGEM_AZURECR }}/' ./manifests/deployment.yml
+        sed -i 's/IMAGE-DEPLOYMENT/${{ env.NOME_IMAGEM }}/' ./manifests/deployment.yml
         sed -i 's/TAG-DEPLOYMENT/${{ github.run_number }}/' ./manifests/deployment.yml
 
     - name: Azure Kubernetes Service - Deployment de Web App
