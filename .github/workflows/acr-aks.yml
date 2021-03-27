@@ -35,7 +35,7 @@ jobs:
         cd ${{ env.PATH_PROJETO }}
         docker build . --file Dockerfile --tag ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:latest
         docker tag ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:latest ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}:$GITHUB_RUN_NUMBER
-        docker push --all-tags ${{ env.IMAGEM_AZURECR }}
+        docker push --all-tags ${{ secrets.AZURECR_REGISTRY }}/${{ env.NOME_IMAGEM }}
 
   deployment:
     needs: [build]
