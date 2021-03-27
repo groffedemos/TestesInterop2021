@@ -23,7 +23,7 @@ jobs:
    
     - name: Teste
       env:
-        mensagem: No. execucao do workflow = ${{ github.run_number }} | ${{ github.event.head_commit.message }} 
+        mensagem: "Workflow = ${{ github.workflow }} | Execucao = ${{ github.run_number }} | ${{ github.event.head_commit.message }}"
       run: echo ${{ env.mensagem }}
     
     - name: Login no Azure Container Registry
