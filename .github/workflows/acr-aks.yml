@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGEM_AZURECR: ${{ secrets.AZURECR_REGISTRY }}/sitereposk8s-anp
+  IMAGEM_AZURECR: ${{ secrets.AZURECR_REGISTRY }}/monitoramentosites
   PATH_PROJETO: ./WorkerMonitoramentoSites
   AZURE_RESOURCE_GROUP_K8S: TesteKubernetes
   AZURE_CLUSTER_K8S: AKSCluster
