@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: monitoramentosites 
+  name: APPLICATION-NAME 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: monitoramentosites
+      app: APPLICATION-NAME
   template:
     metadata:
       labels:
-        app: monitoramentosites
+        app: APPLICATION-NAME
     spec:
       containers:
-        - name: monitoramentosites
+        - name: APPLICATION-NAME
           image: CR-DEPLOYMENT/IMAGE-DEPLOYMENT:TAG-DEPLOYMENT
           env:
             - name: WorkerConfigurations__Hosts
